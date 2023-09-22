@@ -1,0 +1,31 @@
+Use Cases
+Player Movement:
+The player wants to move their paddle to defend their goal.
+The player presses the arrow keys to move their paddle around their respective half of the screen.
+
+Player Hits the Puck
+The player hits the puck with their paddle. The player uses the paddle to intercept the puck and sends it in the desired direction. The puck's speed increases with each successful hit (we can use like a basic line render and start with a cold color and increment the R in RGB to increment in hotter colors).
+
+Scoring:
+The player scores a point.
+When the player successfully gets the puck past the opponent's paddle and into the opponent's goal, they score a point. The score is updated on the screen.
+
+Game Over:
+The game ends.
+When one player reaches a predefined score threshold (maybe like 10 points), the game ends. A "Game Over" screen is displayed and returns to main menu or restart.
+
+Game Restart:
+The player wants to start a new game.
+After the game ends, the player can press a "Restart" button or a designated key (R key) to initiate a new game.
+
+Pause/Resume:
+The player wants to pause the game.
+The player can press the "Pause" button or a designated key (for example, the P key) to temporarily halt the game. Another press of the same button or key resumes gameplay.
+
+Game Instructions:
+The player needs to understand how to play.
+The player can access an Instructions or How to Play screen that provides information on how to control the paddles, score points, and any special game rules.
+
+Exit Game:
+The player wants to exit the game.
+The player can click an exit game button or use a keyboard shortcut (Esc) to close the game and return to the main menu or desktop.

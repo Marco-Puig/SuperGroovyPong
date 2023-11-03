@@ -19,6 +19,9 @@ import javax.swing.JPanel;
 public class SGPSounds extends JFrame implements ActionListener {
     JButton button;
     JPanel panel;
+    //Singleton instance
+    private static SGPSounds instance = null;
+
     public SGPSounds() {
         this.setSize(200, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +31,12 @@ public class SGPSounds extends JFrame implements ActionListener {
         panel.add(button);
         this.add(panel);
         this.setVisible(true);
+    }
+    public static SGPSounds getInstance(){
+        if(instance == null){
+            instance = new SGPSounds();
+        }
+        return instance;
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
@@ -49,7 +58,7 @@ public class SGPSounds extends JFrame implements ActionListener {
         }
     }
     public static void main(String[] args) {
-        new SGPSounds();
+        SGPSounds.getInstance();
     }
 }
 

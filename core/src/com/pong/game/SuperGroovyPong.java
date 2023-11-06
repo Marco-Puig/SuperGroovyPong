@@ -14,6 +14,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private Paddle paddle1, paddle2;
     private Ball ball;
     private BitmapFont font;
+    //music instance
+    private SGPSounds SGPSounds;
 
 
     // On Start
@@ -30,6 +32,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Setting player state (player 1, 2, or ai...)
         paddle1.playerState = State.playerOne;
         paddle2.playerState = State.playerTwo;
+
+        //load and play the audio in the background
+        SGPSounds = new SGPSounds("stylist-rock-beat-trailer-116346.wav");
+        SGPSounds.play();
+
     }
 
     // Render on every frame

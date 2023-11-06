@@ -41,7 +41,7 @@ public class SGPSounds extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
             try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Users/sandy/OneDrive/Desktop/my stuff/college/COP4331/SuperGroovyPong/assets/backgroundMusic.mp3").getAbsoluteFile());
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio/stylist-rock-beat-trailer-116346").getAbsoluteFile());
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInputStream);
                 clip.start();

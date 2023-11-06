@@ -53,8 +53,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
         ball.render(shapeRenderer);
 
         // Draw Score
-        font.draw(batch, Integer.toString(ball.getScore1()), screenWidth / 2 - 50, 50);
-        font.draw(batch, Integer.toString(ball.getScore2()), screenWidth / 2 + 25, 50);
+        font.draw(batch, Integer.toString(ball.getScorePlayerLeft()), screenWidth / 2 - 50, 50);
+        font.draw(batch, Integer.toString(ball.getScorePlayerRight()), screenWidth / 2 + 25, 50);
 
         // Needed calls for render
         batch.end();

@@ -33,11 +33,12 @@ public class Ball {
         shapeRenderer.circle(x, y, width / 2);
     }
 
-    public int getScore1() {
+    
+    public int getScorePlayerLeft() {
         return score1;
     }
 
-    public int getScore2() {
+    public int getScorePlayerRight() {
         return score2;
     }
 }

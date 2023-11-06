@@ -11,7 +11,7 @@ public class Paddle {
     private Rectangle boundingBox;
     public State playerState;
 
-    public Paddle(int x, int y, int width, int height) {
+    public Paddle(int x, int y, int width, int height, State playerState) {
         this.x = x;
         this.y = y;
         this.width = width;

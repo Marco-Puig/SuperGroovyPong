@@ -24,19 +24,14 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Call needed dependencies
         libRequired();
 
-        // Initialize Objects
-        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80);
-        paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80);
+        // Initialize Objects        
+        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
+        paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerTwo); // can also say State.playerAI
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
-
-        // Setting player state (player 1, 2, or ai...)
-        paddle1.playerState = State.playerOne;
-        paddle2.playerState = State.playerTwo;
 
         //load and play the audio in the background
         SGPSounds = new SGPSounds("stylist-rock-beat-trailer-116346.wav");
         SGPSounds.play();
-
     }
 
     // Render on every frame

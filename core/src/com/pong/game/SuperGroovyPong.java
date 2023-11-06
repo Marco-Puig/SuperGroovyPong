@@ -30,7 +30,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
 
         //load and play the audio in the background
-        SGPSounds = new SGPSounds("stylist-rock-beat-trailer-116346.wav");
+        SGPSounds = new SGPSounds("assets\\stylish-rock-beat-trailer-116346.wav");
         SGPSounds.play();
     }
 

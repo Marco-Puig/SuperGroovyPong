@@ -17,6 +17,7 @@ public class Paddle {
         this.width = width;
         this.height = height;
         this.boundingBox = new Rectangle(x, y, width, height);
+        this.playerState = playerState;
     }
 
     public void update() {

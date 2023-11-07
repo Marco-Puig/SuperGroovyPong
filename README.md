@@ -15,7 +15,7 @@ A fast-paced Pong game implemented in Java using the LibGDX library. The game of
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/fast-pong.git
+git clone https://github.com/your-username/SuperGroovyPong.git
 ```
 
 2. Navigate to the project directory:

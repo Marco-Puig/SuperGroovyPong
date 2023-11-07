@@ -43,7 +43,7 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) Li
 
 ## Acknowledgements
 
-- [LibGDX Documentation]((https://libgdx.com/dev/))
+- [LibGDX Documentation](https://libgdx.com/dev/)
 - [Pong - Wikipedia](https://en.wikipedia.org/wiki/Pong)
 
 Feel free to customize it further according to your project's specific requirements.

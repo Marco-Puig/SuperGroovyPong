@@ -1,6 +1,6 @@
 # SuperGroovyPong
 
-A fast-paced Pong game implemented in [Python](https://www.python.org/) using the [Pygame](https://www.pygame.org/) library. The game offers a classic Pong experience with a twist of increased speed and challenging gameplay.
+A fast-paced Pong game implemented in Java using the LibGDX library. The game offers a classic Pong experience with a twist of increased speed and challenging gameplay.
 
 ## Table of Contents
 

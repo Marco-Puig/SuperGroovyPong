@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 
 import java.util.Random;
-
+//Laura needs to work on the ball
 public class Ball {
     private int x, y, width, height;
     private int speed = 5;

@@ -40,6 +40,10 @@ public class Paddle {
         return boundingBox;
     }
 
+    public Rectangle getBoundingRectangle(){
+        return boundingBox;
+    }
+
     public void moveInputKeys()
     {
         // Get Input

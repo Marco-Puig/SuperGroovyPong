@@ -45,6 +45,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Update logic
         paddle1.update();
         paddle2.update();
+        paddle2.trackBall(ball);
         ball.update(paddle1, paddle2, screenWidth, screenHeight);
 
         // Draw objects

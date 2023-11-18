@@ -10,6 +10,7 @@ public class Paddle {
     private static int speed = 5;
     private Rectangle boundingBox;
     public State playerState;
+    private int ballYposition;
 
     public Paddle(int x, int y, int width, int height, State playerState) {
         this.x = x;
@@ -26,7 +27,9 @@ public class Paddle {
         // If main player
         if (playerState == State.playerOne) moveInputKeys();
         if (playerState == State.playerTwo) moveInputWASD();
+        
         // call ai for State.playerAI
+        if (playerState == State.playerAI) moveAI();
 
         // Update the bounding box position
         boundingBox.setPosition(x, y);
@@ -70,6 +73,15 @@ public class Paddle {
         checkCollide();
     }
 
+    public void moveAI() {
+        if (y < ballYposition) {
+            y += speed;
+        }
+        if (y > ballYposition) {
+            y -= speed;
+        }
+    }
+
     public void checkCollide()
     {
         // Add boundary checking to prevent the paddle from going off-screen (Collision)
@@ -79,6 +91,10 @@ public class Paddle {
         if (y > Gdx.graphics.getHeight() - height) {
             y = Gdx.graphics.getHeight() - height;
         } 
+    }
+
+    public void trackBall(Ball ball) {
+        
     }
 
     public enum State {

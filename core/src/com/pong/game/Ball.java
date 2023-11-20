@@ -26,11 +26,32 @@ public class Ball {
         velocityY = speed * (random.nextBoolean() ? 1 : -1);
     }
 
+    public void reverseVelocityX(){
+        velocityX = -velocityX;
+    }
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
+    public float getWidth(){
+        return width;
+    }
+    public void setPosition(float x, float y){
+        this.x = (int)x;
+        this.y = (int)y;
+        boundingCircle.setPosition(x,y);
+    }
+    public Circle getBoundingCircle(){
+        return boundingCircle;
+    }
+
     public void update(Paddle paddle1, Paddle paddle2, int screenWidth, int screenHeight) {
         // Add logic for updating the ball's position and handling collisions
         //update the ball position based on the velocity
         x+= velocityX;
-        x+= velocityY;
+        y+= velocityY;
 
         //check to see if it collided with a wall
         if( x-width/2 <0 || x+ width/2 > screenWidth){

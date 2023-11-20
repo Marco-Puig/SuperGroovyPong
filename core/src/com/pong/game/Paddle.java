@@ -80,7 +80,14 @@ public class Paddle {
         if (y > ballYposition) {
             y -= speed;
         }
+        
+        checkCollide();
     }
+
+    public void trackBall(Ball ball) {
+        ballYposition = ball.getBallY();
+    }
+
 
     public void checkCollide()
     {
@@ -91,10 +98,6 @@ public class Paddle {
         if (y > Gdx.graphics.getHeight() - height) {
             y = Gdx.graphics.getHeight() - height;
         } 
-    }
-
-    public void trackBall(Ball ball) {
-        ballYposition = ball.getBallY();
     }
 
     public enum State {

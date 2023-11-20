@@ -62,6 +62,9 @@ public class Ball {
         shapeRenderer.circle(x, y, width / 2);
     }
 
+    public int getBallY() {
+        return y;
+    }
     
     public int getScorePlayerLeft() {
         return score1;

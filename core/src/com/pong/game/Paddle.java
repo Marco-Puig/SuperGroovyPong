@@ -94,7 +94,7 @@ public class Paddle {
     }
 
     public void trackBall(Ball ball) {
-        
+        ballYposition = ball.getBallY();
     }
 
     public enum State {

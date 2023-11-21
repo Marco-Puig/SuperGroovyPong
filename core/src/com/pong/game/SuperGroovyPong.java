@@ -21,6 +21,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
     // On Start
     @Override
     public void create () {
+        //set the starting screen
+        //setScreen(new StartScreen(this));
+
         // Call needed dependencies
         libRequired();
 

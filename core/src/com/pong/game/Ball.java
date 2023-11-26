@@ -80,6 +80,8 @@ public class Ball {
             Intersector.overlaps(ballRectangle, paddle2.getBoundingRectangle())) {
             // Reverse the horizontal velocity if the ball hits a paddle
             reverseVelocityX();
+
+            //CALL A FUNCTION HERE THAT UPS THE SPEED AND TELLS TRAIL RENDER TO MAKE IT LOOK MORE LIKE FIRE
         }
 
         //check for a collsision in the top and bottom walls

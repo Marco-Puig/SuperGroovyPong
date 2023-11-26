@@ -29,6 +29,9 @@ public class Ball {
     public void reverseVelocityX(){
         velocityX = -velocityX;
     }
+    public void reverseVelocityY(){
+        velocityY = -velocityY;
+    }
     public float getX(){
         return x;
     }
@@ -50,29 +53,39 @@ public class Ball {
     public void update(Paddle paddle1, Paddle paddle2, int screenWidth, int screenHeight) {
         // Add logic for updating the ball's position and handling collisions
         //update the ball position based on the velocity
-        x+= velocityX;
-        y+= velocityY;
+        x += velocityX;
+        y += velocityY;
 
-        //check to see if it collided with a wall
-        if( x-width/2 <0 || x+ width/2 > screenWidth){
-            //reverse the horizontal velocity
-            velocityX = -velocityX;
+        //check to see if it collided with a wall and on which side to update the score
+        if ((x + width / 2) > screenWidth){
+            //reverse the horizontal velocity and give right player a point, after, reset the ball position to the center again
+            reverseVelocityX();
+            score1++;
+            x = 400;
+            y = 400;
+        }
+        else if((x - width / 2) < 0){
+            //reverse the horizontal velocity and give left player a point, after, reset the ball position to the center again
+            reverseVelocityX();
+            score2++;
+            x = 400;
+            y = 400;
         }
 
-        //check to see if it collided with a paddle
+        // check to see if it collided with a paddle
         // Check for collisions with paddles
         Rectangle ballRectangle = new Rectangle(x - width / 2, y - width / 2, width, height);
 
-        if (Intersector.overlaps(ballRectangle, paddle1.getBoundingRectangle()) ||
+        if (Intersector.overlaps(ballRectangle, paddle1.getBoundingRectangle()) || 
             Intersector.overlaps(ballRectangle, paddle2.getBoundingRectangle())) {
             // Reverse the horizontal velocity if the ball hits a paddle
-            velocityX = -velocityX;
+            reverseVelocityX();
         }
 
         //check for a collsision in the top and bottom walls
         if (y - width / 2 < 0 || y + width / 2 > screenHeight) {
             // Reverse the vertical velocity if the ball hits the top or bottom wall
-            velocityY = -velocityY;
+            reverseVelocityY();
         }
         //update the BoundingCircle.setPosition
         boundingCircle.setPosition(x,y);

@@ -88,7 +88,6 @@ public class Paddle {
         ballYposition = ball.getBallY();
     }
 
-
     public void checkCollide()
     {
         // Add boundary checking to prevent the paddle from going off-screen (Collision)

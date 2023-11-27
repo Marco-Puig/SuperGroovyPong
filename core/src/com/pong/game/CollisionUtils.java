@@ -1,5 +1,6 @@
 package com.pong.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.audio.Sound;
 //libGDX Intersector class
@@ -11,7 +12,7 @@ public class CollisionUtils {
 
     //initialize the sound
     public static void initializeSound(){
-        //hitSound = new Sound(gdx.files.inernal("assets\\hit.wav"));
+        Sound hitSound = Gdx.audio.newSound(Gdx.files.internal("assets\\hit.wav"));
     }
 
     public static boolean collides(Paddle paddle, Ball ball) {

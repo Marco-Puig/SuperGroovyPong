@@ -12,7 +12,7 @@ public class CollisionUtils {
 
     //initialize the sound
     public static void initializeSound(){
-        Sound hitSound = Gdx.audio.newSound(Gdx.files.internal("assets\\hit.wav"));
+        hitSound = Gdx.audio.newSound(Gdx.files.internal("assets\\scored.wav"));
     }
 
     public static boolean collides(Paddle paddle, Ball ball) {

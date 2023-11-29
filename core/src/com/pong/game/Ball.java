@@ -60,6 +60,7 @@ public class Ball {
         if ((x + width / 2) > screenWidth){
             //reverse the horizontal velocity and give right player a point, after, reset the ball position to the center again
             reverseVelocityX();
+            resetSpeed();
             score1++;
             x = 400;
             y = 400;
@@ -67,6 +68,7 @@ public class Ball {
         else if((x - width / 2) < 0){
             //reverse the horizontal velocity and give left player a point, after, reset the ball position to the center again
             reverseVelocityX();
+            resetSpeed();
             score2++;
             x = 400;
             y = 400;
@@ -80,8 +82,9 @@ public class Ball {
             Intersector.overlaps(ballRectangle, paddle2.getBoundingRectangle())) {
             // Reverse the horizontal velocity if the ball hits a paddle
             reverseVelocityX();
+            //CALL A FUNCTION HERE THAT TELLS TRAIL RENDER TO MAKE IT LOOK MORE LIKE FIRE
+            increaseSpeed();
 
-            //CALL A FUNCTION HERE THAT UPS THE SPEED AND TELLS TRAIL RENDER TO MAKE IT LOOK MORE LIKE FIRE
         }
 
         //check for a collsision in the top and bottom walls
@@ -108,5 +111,18 @@ public class Ball {
 
     public int getScorePlayerRight() {
         return score2;
+    }
+
+    public void increaseSpeed()
+    {
+        velocityX *= 1.1;
+        velocityX *= 1.1;
+    }
+
+    public void resetSpeed()
+    {
+        Random random = new Random();
+        velocityX = speed * (random.nextBoolean() ? 1 : -1);
+        velocityY = speed * (random.nextBoolean() ? 1 : -1);
     }
 }

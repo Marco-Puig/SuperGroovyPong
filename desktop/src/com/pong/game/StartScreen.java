@@ -5,14 +5,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 /**
  * Class to create a start screen
  * @author Laura Waldron, Hana Segura
  */
-public class StartScreen  implements Screen{
+public class StartScreen implements Screen{
     //define the game variable
     private final SuperGroovyPong game;
     //define the camera?
@@ -21,18 +28,53 @@ public class StartScreen  implements Screen{
     private SpriteBatch batch;
     //define the font
     private BitmapFont font;
+    private Stage stage;
 
-    public StartScreen(final SuperGroovyPong game){
+    public StartScreen(final SuperGroovyPong game) {
         this.game = game;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 400); //adjust dimensions
+        camera.setToOrtho(false, 800, 400);
         batch = new SpriteBatch();
         font = new BitmapFont();
+        stage = new Stage(new FitViewport(800, 400));
     }
-    
+
     @Override
     public void show(){
         //setup screen when shown
+        initializeUI();
+        initializeGameObjects();
+    }
+
+    private void initializeUI(){
+        TextButton startButton = new TextButton("Start Game", game.skin);
+        startButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                startGame();
+            }
+        });
+
+        Table table = new Table();
+        table.setFillParent(true);
+        table.add(startButton).pad(20);
+        stage.addActor(table);
+    }
+
+    private void initializeGameObjects(){
+        // Initialize paddles and ball, set up game world
+        Paddle playerPaddle = new Paddle(new Texture("player_paddle.png"), 20, 200);
+        Paddle enemyPaddle = new Paddle(new Texture("enemy_paddle.png"), 760, 200);
+        Ball ball = new Ball(new Texture("ball.png"), 400, 200);
+
+        // Add game objects to the game world
+        game.gameWorld.addPaddle(playerPaddle);
+        game.gameWorld.addPaddle(enemyPaddle);
+        game.gameWorld.setBall(ball);
+    }
+
+    private void startGame(){
+        game.setScreen(new GameScreen(game));
     }
 
     @Override
@@ -48,15 +90,19 @@ public class StartScreen  implements Screen{
         font.draw(batch, "Please tap the screen to begin!", 100, 100);
         batch.end();
         //following code for switching between screens
+
         if (Gdx.input.isTouched()) {
             //game.setScreen(new SuperGroovyPong(game)); // Switch to the game screen when touched
             dispose(); // Dispose of resources used by this screen
         }
+
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
     }
 
     @Override
-    public void resize(int width, int height){
-        //code to handle screen resizing
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -67,18 +113,41 @@ public class StartScreen  implements Screen{
     @Override
     public void resume(){
         //handle when the game is resumed
+        game.gameWorld.resume();
     }
 
     @Override
     public void hide(){
         //clean up screen when it is no longer active
+        disposeScreenResources();
+        stopScreenAnimations();
     }
 
     @Override
     public void dispose(){
         //dispose of resources when screen no longer shown
+        disposeScreenResources();
+        stage.dispose();
+    }
+
+    private void disposeScreenResources(){
         batch.dispose();
         font.dispose();
     }
 
+    private void stopScreenAnimations(){
+        Array<com.badlogic.gdx.scenes.scene2d.Action> screenActions = new Array<>();
+
+        for (com.badlogic.gdx.scenes.scene2d.Actor actor : stage.getActors()) {
+            if (actor.hasActions()) {
+                screenActions.addAll(actor.getActions());
+            }
+            actor.clearActions();
+        }
+
+        for (com.badlogic.gdx.scenes.scene2d.Action action : screenActions) {
+            action.finish();
+        }
+        screenActions.clear();
+    }
 }

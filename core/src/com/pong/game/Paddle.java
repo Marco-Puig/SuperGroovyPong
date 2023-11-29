@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Class to handle the paddle
+ * @author Marco Puig
+ */
 public class Paddle {
     private int x, y, width, height; //box width height
     private static int speed = 5;
@@ -12,6 +16,14 @@ public class Paddle {
     public State playerState;
     private int ballYposition;
 
+    /**
+     * Method to define a paddle
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param width the width of the paddle
+     * @param height the height of the paddle
+     * @param playerState the state of the player
+     */
     public Paddle(int x, int y, int width, int height, State playerState) {
         this.x = x;
         this.y = y;
@@ -21,6 +33,9 @@ public class Paddle {
         this.playerState = playerState;
     }
 
+    /**
+     * Method to update the state
+     */
     public void update() {
         // Movement code based on state
 
@@ -34,19 +49,35 @@ public class Paddle {
         // Update the bounding box position
         boundingBox.setPosition(x, y);
     }
+    /**
+     * Method to create a paddle (rectangle)
+     * @param shapeRenderer create the paddle
+     */
     public void render(ShapeRenderer shapeRenderer) {
         shapeRenderer.setColor(Color.WHITE);
         shapeRenderer.rect(x, y, width, height);
     }
 
+    /**
+     * Method to create a bounding box
+     * @return the bounding box
+     */
     public Rectangle getBoundingBox() {
         return boundingBox;
     }
 
+    /**
+     * Method to create a rectangle
+     * @return the rectangle
+     */
     public Rectangle getBoundingRectangle(){
         return boundingBox;
     }
 
+    /**
+     * Method to move the input keys (WASD)
+     * @author Antoinio Croissy
+     */
     public void moveInputKeys()
     {
         // Get Input
@@ -60,6 +91,10 @@ public class Paddle {
         checkCollide();
     }
     
+    /**
+     * Method to move the WASD keys
+     * @author Antoinio Croissy
+     */
     public void moveInputWASD()
     {
         // Get Input
@@ -73,6 +108,10 @@ public class Paddle {
         checkCollide();
     }
 
+    /**
+     * Method to move the AI Player
+     * @author Antoinio Croissy
+     */
     public void moveAI() {
         if (y < ballYposition) {
             y += speed;
@@ -84,24 +123,36 @@ public class Paddle {
         checkCollide();
     }
 
+    /**
+     * Method to track the ball
+     * @param ball the moving ball
+     */
     public void trackBall(Ball ball) {
         ballYposition = ball.getBallY();
     }
 
+    /**
+     * Method to check for a collision
+     * @author Marco Puig
+     */
     public void checkCollide()
     {
         // Add boundary checking to prevent the paddle from going off-screen (Collision)
         if (y < 0) {
-                y = 0;
+            y = 0;
         }
         if (y > Gdx.graphics.getHeight() - height) {
             y = Gdx.graphics.getHeight() - height;
         } 
     }
 
+    /**
+     * State declaration (3 states)
+     * @author Marco Puig
+     */
     public enum State {
-        playerOne,
-        playerTwo,
-        playerAI
+        playerOne, //state 1--player one
+        playerTwo, //state 2-- player two
+        playerAI //state 3-- AI player
     }
 }

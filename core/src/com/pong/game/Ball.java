@@ -4,10 +4,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+//import libraries to control the ball
 
-import java.util.Random;
-//Laura needs to work on the ball
+import java.util.Random; //use the random library to make the ball move randomly
+
+/**
+ * Class handling the Ball's definition
+ * @author Marco Puig
+ */
 public class Ball {
+    //initialize variables to handle the ball
     private int x, y, width, height;
     private int speed = 5;
     private int velocityX, velocityY;
@@ -15,6 +21,13 @@ public class Ball {
     private int score1 = 0;
     private int score2 = 0;
 
+    /**
+     * Method to declare a ball
+     * @param x the x position of the ball
+     * @param y the y position of the ball
+     * @param width the width of the ball
+     * @param height the height of the ball
+     */
     public Ball(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -26,55 +39,94 @@ public class Ball {
         velocityY = speed * (random.nextBoolean() ? 1 : -1);
     }
 
+    /**
+     * Method to reverse the ball's x velocity
+     * @author Laura Waldron
+     */
     public void reverseVelocityX(){
         velocityX = -velocityX;
     }
+    /**
+     * Method to reverse the ball's y velocity
+     * @author Laura Waldron
+     */
     public void reverseVelocityY(){
         velocityY = -velocityY;
     }
+    /**
+     * Method to get the X value of the ball
+     * @return the x value of the ball
+     */
     public float getX(){
         return x;
     }
+    /**
+     * Method to get the Y value of the ball
+     * @return the y value of the ball
+     */
     public float getY(){
         return y;
     }
+    /**
+     * Method to get the width of the ball
+     * @return the width of the ball
+     */
     public float getWidth(){
         return width;
     }
+    /**
+     * Method to set the position of the ball
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
     public void setPosition(float x, float y){
         this.x = (int)x;
         this.y = (int)y;
         boundingCircle.setPosition(x,y);
     }
+    /**
+     * Method to get the circle (ball)
+     * @return the circle
+     */
     public Circle getBoundingCircle(){
         return boundingCircle;
     }
 
+    /**
+     * Method to update the ball's position upon collision
+     * @author Laura Waldron
+     * @param paddle1 the first paddle
+     * @param paddle2 the second paddle
+     * @param screenWidth the width of the screen
+     * @param screenHeight the height of the screen
+     */
     public void update(Paddle paddle1, Paddle paddle2, int screenWidth, int screenHeight) {
-        // Add logic for updating the ball's position and handling collisions
         //update the ball position based on the velocity
         x += velocityX;
         y += velocityY;
 
         //check to see if it collided with a wall and on which side to update the score
         if ((x + width / 2) > screenWidth){
-            //reverse the horizontal velocity and give right player a point, after, reset the ball position to the center again
+            //reverse the horizontal velocity 
             reverseVelocityX();
+            //give the right player a point 
             resetSpeed();
             score1++;
+            //reset the ball position to the center again
             x = 400;
             y = 400;
         }
         else if((x - width / 2) < 0){
-            //reverse the horizontal velocity and give left player a point, after, reset the ball position to the center again
+            //reverse the horizontal velocity
             reverseVelocityX();
+            //give the left player a point
             resetSpeed();
             score2++;
+            //reset the ball position to the center
             x = 400;
             y = 400;
         }
 
-        // check to see if it collided with a paddle
         // Check for collisions with paddles
         Rectangle ballRectangle = new Rectangle(x - width / 2, y - width / 2, width, height);
 
@@ -96,29 +148,49 @@ public class Ball {
         boundingCircle.setPosition(x,y);
     }
 
+    /**
+     * Method to create the ball
+     * @param shapeRenderer the shapeRenderer option to make the ball
+     */
     public void render(ShapeRenderer shapeRenderer) {
         shapeRenderer.setColor(Color.WHITE);
         shapeRenderer.circle(x, y, width / 2);
     }
 
+    /**
+     * Get the y coordinate of the ball
+     * @return the y coordinate
+     */
     public int getBallY() {
         return y;
     }
-    
+    /**
+     * Method to get the score of the left player
+     * @return the score of the left player
+     */
     public int getScorePlayerLeft() {
         return score1;
     }
-
+    /**
+     * Method to get the score of the right player
+     * @return the score of the right player
+     */
     public int getScorePlayerRight() {
         return score2;
     }
-
+    /**
+     * Method to increase the speed of the ball
+     * @author Marco Puig
+     */
     public void increaseSpeed()
     {
         velocityX *= 1.1;
         velocityX *= 1.1;
     }
 
+    /**
+     * Method to reset the speed of the ball
+     */
     public void resetSpeed()
     {
         Random random = new Random();

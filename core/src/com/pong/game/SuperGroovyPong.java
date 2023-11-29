@@ -7,6 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
 
+
+/**
+ * Main Super Groovy Pong Class, using the Application Adapter
+ * @author Marco Puig
+ */
 public class SuperGroovyPong extends ApplicationAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -18,6 +23,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private SGPSounds SGPSounds;
 
 
+    /**
+     * Method to create the new game
+     */
     // On Start
     @Override
     public void create () {
@@ -37,6 +45,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
         SGPSounds.play();
     }
 
+    /**
+     * Method to render the screen
+     */
     // Render on every frame
     @Override
     public void render () {
@@ -68,6 +79,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
     }
 
 
+    /**
+     * Method to dispose of the screen when the game is over
+     */
     // Dispose when completed
     @Override
     public void dispose () {
@@ -76,7 +90,15 @@ public class SuperGroovyPong extends ApplicationAdapter {
         font.dispose();
     }
 
-    // Needed requirements, so I just have them here
+    // Inside your SuperGroovyPong class
+    public void showEndScreen(int finalScore) {
+        //setScreen(new EndScreen(this, finalScore));
+    }
+
+    /**
+     * Needed requirements for the game
+     * @author Marco Puig
+     */
     public void libRequired()
     {
         batch = new SpriteBatch();

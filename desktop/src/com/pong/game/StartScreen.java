@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Class to create a start screen
+ * @author Laura Waldron, Hana Segura
+ */
 public class StartScreen  implements Screen{
     //define the game variable
     private final SuperGroovyPong game;

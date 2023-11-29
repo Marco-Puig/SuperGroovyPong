@@ -1,6 +1,8 @@
 # SuperGroovyPong
 
-A fast-paced Pong game implemented in Java using the LibGDX library. The game offers a classic Pong experience with a twist of increased speed and challenging gameplay.
+Antonio Croissy | Marco Puig | Hana Segura | Laura Waldron
+
+A fast-paced Pong game implemented in Java using the LibGDX library. The game offers a classic Pong experience with a twist of increased speed and challenging gameplay. We will incorporate free movement until a certain point. The ball speed increases as the player keeps hitting the ball, going from a cold color to a warmer color. We have one player mode, with a basic AI as the opponent, and the players navigate with the wasd or arrow keys. We are also including sound effects, and possibly a leaderboard. We will have screens for instructions and also when the game ends. Players are able to restart the game, or to pause/resume in the middle of the game. Overall, this will be an engaging pong game where players test their skills.
 
 ## Table of Contents
 
@@ -30,6 +32,7 @@ cd SuperGroovyPong
 
 - Player 1: Use the W and S keys to move the paddle up and down, respectively.
 - Player 2: Use the Up and Down arrow keys to move the paddle up and down, respectively.
+- AI Player: Automatically moves up and down without user control.
 
 ## Contributing
 

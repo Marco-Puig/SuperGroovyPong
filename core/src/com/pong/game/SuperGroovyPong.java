@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
 /**
@@ -21,6 +23,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private BitmapFont font;
     //music instance
     private SGPSounds SGPSounds;
+    //screen instance
+    private StartScreen startScreen;
 
 
     /**
@@ -34,6 +38,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
         // Call needed dependencies
         libRequired();
+        startScreen = new StartScreen(this);
+        //setScreen(startScreen);
 
         // Initialize Objects once we go past Start Screen        
         paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
@@ -89,6 +95,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         shapeRenderer.dispose();
         font.dispose();
     }
+    
+    public void startGame(){
+        //setScreen(new SuperGroovyPong(this));
+    }
 
     // Inside your SuperGroovyPong class
     public void showEndScreen(int finalScore) {
@@ -106,5 +116,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         font = new BitmapFont();
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
+        //skin initialization
+        //skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
     }
 }

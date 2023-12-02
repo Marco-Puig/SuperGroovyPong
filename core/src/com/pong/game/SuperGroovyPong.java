@@ -25,7 +25,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //music instance
     private SGPSounds SGPSounds;
     //screen instance
-    // private StartScreen startScreen; 
+    // private StartScreen startScreen;
+
+    public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
+
+    gameScreen CurrentScreen;
 
     /**
      * Method to create the new game
@@ -67,6 +71,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         paddle2.update();
         paddle2.trackBall(ball);
         ball.update(paddle1, paddle2, screenWidth, screenHeight);
+        checkGameState();
 
         // Draw objects
         batch.begin();
@@ -104,6 +109,13 @@ public class SuperGroovyPong extends ApplicationAdapter {
     public void showEndScreen(int finalScore) {
         //setScreen(new EndScreen(this, finalScore));
     }
+
+    public void checkGameState() {
+        if (CurrentScreen != gameScreen.EndScreen) {
+            
+        }
+    }
+
 
     /**
      * Needed requirements for the game

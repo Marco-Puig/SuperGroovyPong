@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
@@ -24,8 +25,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //music instance
     private SGPSounds SGPSounds;
     //screen instance
-    private StartScreen startScreen;
-
+    // private StartScreen startScreen; 
 
     /**
      * Method to create the new game
@@ -38,7 +38,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
         // Call needed dependencies
         libRequired();
-        startScreen = new StartScreen(this);
+        // startScreen = new StartScreen(this);
         //setScreen(startScreen);
 
         // Initialize Objects once we go past Start Screen        

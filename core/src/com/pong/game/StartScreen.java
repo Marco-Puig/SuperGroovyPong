@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
+   /*
 public class StartScreen implements Screen {
 
     private final SuperGroovyPong game;
@@ -75,6 +76,7 @@ public class StartScreen implements Screen {
         // Dispose of resources when the screen is no longer needed
     }
 }
+*/
 
 // package com.pong.game;
 

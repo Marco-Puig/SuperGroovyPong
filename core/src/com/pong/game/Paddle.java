@@ -14,7 +14,7 @@ public class Paddle {
     private static int speed = 5;
     private Rectangle boundingBox;
     public State playerState;
-    private int ballYposition;
+    private int ballYposition, ballXposition;
 
     /**
      * Method to define a paddle
@@ -40,8 +40,8 @@ public class Paddle {
         // Movement code based on state
 
         // If main player
-        if (playerState == State.playerOne) moveInputKeys();
-        if (playerState == State.playerTwo) moveInputWASD();
+        if (playerState == State.playerOne) moveInputWASD();
+        if (playerState == State.playerTwo) moveInputKeys();
         
         // call ai for State.playerAI
         if (playerState == State.playerAI) moveAI();
@@ -87,13 +87,23 @@ public class Paddle {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             y -= speed;
         }   
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            x += speed;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            x -= speed;
+        } 
+
+        if (x > Gdx.graphics.getWidth() / 3) {
+            x = Gdx.graphics.getWidth() / 3;
+        }
         
         checkCollide();
     }
     
     /**
      * Method to move the WASD keys
-     * @author Antoinio Croissy
+     * @author Marco Puig
      */
     public void moveInputWASD()
     {
@@ -104,6 +114,16 @@ public class Paddle {
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             y -= speed;
         }   
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            x += speed;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            x -= speed;
+        } 
+
+        if (x > Gdx.graphics.getWidth() / 3) {
+            x = Gdx.graphics.getWidth() / 3;
+        }
         
         checkCollide();
     }
@@ -119,7 +139,7 @@ public class Paddle {
         if (y > ballYposition) {
             y -= speed;
         }
-        
+          
         checkCollide();
     }
 
@@ -129,30 +149,37 @@ public class Paddle {
      */
     public void trackBall(Ball ball) {
         ballYposition = ball.getBallY();
+        ballXposition = ball.getBallX();
     }
 
     /**
      * Method to check for a collision
      * @author Marco Puig
      */
-    public void checkCollide()
-    {
+    public void checkCollide() {
         // Add boundary checking to prevent the paddle from going off-screen (Collision)
+        
+        // Y-axis boundary checking
         if (y < 0) {
             y = 0;
         }
         if (y > Gdx.graphics.getHeight() - height) {
             y = Gdx.graphics.getHeight() - height;
-        } 
-    }
+        }
+    
+        // X-axis boundary checking (limit movement to one-third of the screen)
+        if (x < 0) {
+            x = 0;
+        }
+    } 
 
     /**
      * State declaration (3 states)
      * @author Marco Puig
      */
     public enum State {
-        playerOne, //state 1--player one
-        playerTwo, //state 2-- player two
-        playerAI //state 3-- AI player
+        playerOne, //state 1 -- player one
+        playerTwo, //state 2 -- player two
+        playerAI //state 3 -- AI player
     }
 }

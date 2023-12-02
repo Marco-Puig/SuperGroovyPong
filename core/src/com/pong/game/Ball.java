@@ -5,8 +5,13 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 //import libraries to control the ball
-
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import java.util.ArrayList;
 import java.util.Random; //use the random library to make the ball move randomly
+import java.util.Iterator;
+
+import com.badlogic.gdx.Gdx;
+
 
 /**
  * Class handling the Ball's definition
@@ -34,9 +39,7 @@ public class Ball {
         this.width = width;
         this.height = height;
         this.boundingCircle = new Circle(x, y, width / 2);
-        Random random = new Random();
-        velocityX = speed * (random.nextBoolean() ? 1 : -1);
-        velocityY = speed * (random.nextBoolean() ? 1 : -1);
+        resetSpeed();
     }
 
     /**
@@ -111,20 +114,22 @@ public class Ball {
             reverseVelocityX();
             //give the right player a point 
             resetSpeed();
+            // play sound on scored
+            Gdx.audio.newSound(Gdx.files.internal("audio/scored.wav")).play();
             score1++;
             //reset the ball position to the center again
-            x = 400;
-            y = 400;
+            resetBall();
         }
         else if((x - width / 2) < 0){
             //reverse the horizontal velocity
             reverseVelocityX();
             //give the left player a point
             resetSpeed();
+            // play sound on scored
+            Gdx.audio.newSound(Gdx.files.internal("audio/scored.wav")).play();
             score2++;
             //reset the ball position to the center
-            x = 400;
-            y = 400;
+            resetBall();
         }
 
         // Check for collisions with paddles
@@ -134,9 +139,9 @@ public class Ball {
             Intersector.overlaps(ballRectangle, paddle2.getBoundingRectangle())) {
             // Reverse the horizontal velocity if the ball hits a paddle
             reverseVelocityX();
-            //CALL A FUNCTION HERE THAT TELLS TRAIL RENDER TO MAKE IT LOOK MORE LIKE FIRE
+            // play sound on hit
+            Gdx.audio.newSound(Gdx.files.internal("audio/hit.wav")).play();
             increaseSpeed();
-
         }
 
         //check for a collsision in the top and bottom walls
@@ -144,8 +149,9 @@ public class Ball {
             // Reverse the vertical velocity if the ball hits the top or bottom wall
             reverseVelocityY();
         }
+        
         //update the BoundingCircle.setPosition
-        boundingCircle.setPosition(x,y);
+        boundingCircle.setPosition(x, y);
     }
 
     /**
@@ -153,10 +159,17 @@ public class Ball {
      * @param shapeRenderer the shapeRenderer option to make the ball
      */
     public void render(ShapeRenderer shapeRenderer) {
-        shapeRenderer.setColor(Color.WHITE);
+        // Render the ball
+
+        // Calculate color based on which player has last hit the ball
+        float red = -velocityX;
+        float blue = velocityX;
+        float green = 0.0f;
+        
+        shapeRenderer.setColor(red, green, blue, 1);
         shapeRenderer.circle(x, y, width / 2);
     }
-
+    
     /**
      * Get the y coordinate of the ball
      * @return the y coordinate
@@ -164,6 +177,15 @@ public class Ball {
     public int getBallY() {
         return y;
     }
+
+    /**
+     * Get the y coordinate of the ball
+     * @return the y coordinate
+     */
+    public int getBallX() {
+        return x;
+    }
+
     /**
      * Method to get the score of the left player
      * @return the score of the left player
@@ -171,6 +193,7 @@ public class Ball {
     public int getScorePlayerLeft() {
         return score1;
     }
+
     /**
      * Method to get the score of the right player
      * @return the score of the right player
@@ -178,14 +201,15 @@ public class Ball {
     public int getScorePlayerRight() {
         return score2;
     }
+
     /**
      * Method to increase the speed of the ball
      * @author Marco Puig
      */
     public void increaseSpeed()
     {
-        velocityX *= 1.1;
-        velocityX *= 1.1;
+        velocityX *= 1.2;
+        velocityY *= 1.2;
     }
 
     /**
@@ -197,4 +221,15 @@ public class Ball {
         velocityX = speed * (random.nextBoolean() ? 1 : -1);
         velocityY = speed * (random.nextBoolean() ? 1 : -1);
     }
+
+    
+    /**
+     * Method to reset the position of the ball
+     */
+    private void resetBall()
+    {
+        x = Gdx.graphics.getWidth() / 2;
+        y = Gdx.graphics.getHeight() / 2;
+    }
+
 }

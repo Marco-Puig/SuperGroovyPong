@@ -1,4 +1,6 @@
 Use Cases
+------------------
+
 Player Movement:
 The player wants to move their paddle to defend their goal.
 The player presses the arrow keys to move their paddle around their respective half of the screen.
@@ -29,3 +31,5 @@ The player can access an Instructions or How to Play screen that provides inform
 Exit Game:
 The player wants to exit the game.
 The player can click an exit game button or use a keyboard shortcut (Esc) to close the game and return to the main menu or desktop.
+
+------------------

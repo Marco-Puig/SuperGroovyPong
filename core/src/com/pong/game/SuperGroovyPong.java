@@ -28,7 +28,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //screen instance
     // private StartScreen startScreen;
 
-    boolean isPaused = false;
+    private boolean isPaused = false;
+    private boolean gameOver = false;
 
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
@@ -137,15 +138,16 @@ public class SuperGroovyPong extends ApplicationAdapter {
     }
 
     private void gameOverCheck() {
-        if (ball.getScorePlayerLeft() < ball.getScorePlayerRight()-3) {
+        if (ball.getScorePlayerLeft() >= 3 || ball.getScorePlayerRight() >= 3) {
+            gameOver = true;
             CurrentScreen = gameScreen.EndScreen;
+            System.out.println(CurrentScreen);
         }
     }
 
     private void pauseCheck() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             isPaused = !isPaused;
-            System.out.println(isPaused);
         }
 
         if (isPaused) {
@@ -153,8 +155,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
             CurrentScreen = gameScreen.PauseScreen;
         } else {
             // Handle resume logic (e.g., restart animations or resume background music)
-            CurrentScreen = gameScreen.PlayScreen;
-        } 
+            if (!gameOver) {
+                CurrentScreen = gameScreen.PlayScreen;
+            }
+        }
+        System.out.println(CurrentScreen);
     }
 
     /**

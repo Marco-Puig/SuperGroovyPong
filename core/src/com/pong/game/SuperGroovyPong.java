@@ -141,7 +141,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
         if (ball.getScorePlayerLeft() >= 3 || ball.getScorePlayerRight() >= 3) {
             gameOver = true;
             CurrentScreen = gameScreen.EndScreen;
-            System.out.println(CurrentScreen);
         }
     }
 

@@ -27,6 +27,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //music instance
     private SGPSounds SGPSounds;
 
+    //Flags
     private boolean isPaused;
     private boolean gameOver;
 
@@ -40,13 +41,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     // On Start
     @Override
     public void create () {
-        //set the starting screen
-        //setScreen(new StartScreen(this));
-
         // Call needed dependencies
         libRequired();
-        // startScreen = new StartScreen(this);
-        //setScreen(startScreen);
 
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
@@ -112,7 +108,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         SGPSounds.dispose();
     }
 
-    // runs various game checks and load screen based on CurrentScreen value
+    /**
+     * runs various game checks and load screen based on CurrentScreen value
+     * @author Antonio Croissy
+     */
     public void checkGameState() {
 
         gameOverCheck();
@@ -132,7 +131,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
        
     }
 
-    //checks score of both player to determine if game should be over
+    /**
+     * checks score of both player to determine if game should be over
+     * @author Antonio Croissy
+     */
     private void gameOverCheck() {
         if (ball.getScorePlayerLeft() >= 3 || ball.getScorePlayerRight() >= 3) {
             gameOver = true;
@@ -140,7 +142,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         }
     }
 
-    // Allows for for game to be paused by changing currentScreen to pauseScreen
+    /**
+     * Allows for for game to be paused by changing currentScreen to pauseScreen
+     * @author Antonio Croissy
+     */
     private void pauseCheck() {
         if (!gameOver) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {

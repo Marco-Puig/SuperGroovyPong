@@ -27,6 +27,7 @@ cd SuperGroovyPong
 ```
 
 3. Install the required Java Development Kit if you are using VSCode
+4. Open the DESKTOP LAUNCHER & run the program through there. A window will popup, entitled 'Super Groovy Pong'
 
 ## Controls
 
@@ -48,5 +49,3 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) Li
 
 - [LibGDX Documentation](https://libgdx.com/dev/)
 - [Pong - Wikipedia](https://en.wikipedia.org/wiki/Pong)
-
-Feel free to customize it further according to your project's specific requirements.

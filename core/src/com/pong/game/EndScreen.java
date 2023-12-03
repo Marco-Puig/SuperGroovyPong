@@ -50,8 +50,9 @@ public class EndScreen implements Screen {
 
         if (Gdx.input.isTouched()) {
             // Reset the game and switch back to the main screen
-            //game.setScreen(new SuperGroovyPong(game));
+            game.dispose();
             dispose();
+            game.create();
         }
     }
 

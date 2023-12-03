@@ -52,7 +52,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         CurrentScreen = gameScreen.PlayScreen;
 
         // Initialize Objects once we go past Start Screen        
-        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
+        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerAI);
         paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
 
@@ -76,6 +76,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Update logic
         if (CurrentScreen == gameScreen.PlayScreen) {
             paddle1.update();
+            paddle1.trackBall(ball);
             paddle2.update();
             paddle2.trackBall(ball);
             ball.update(paddle1, paddle2, screenWidth, screenHeight);
@@ -107,8 +108,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
         batch.dispose();
         shapeRenderer.dispose();
         font.dispose();
+        SGPSounds.dispose();
     }
-    
+/*
     public void startGame(){
         //setScreen(new SuperGroovyPong(this));
     }
@@ -117,7 +119,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     public void showEndScreen(int finalScore) {
         //setScreen(new EndScreen(this, finalScore));
     }
-
+*/
     public void checkGameState() {
 
         gameOverCheck();
@@ -152,13 +154,14 @@ public class SuperGroovyPong extends ApplicationAdapter {
         if (isPaused) {
             // Handle any pause-related logic (e.g., stop animations or background music)
             CurrentScreen = gameScreen.PauseScreen;
+            SGPSounds.stop();
         } else {
             // Handle resume logic (e.g., restart animations or resume background music)
             if (!gameOver) {
                 CurrentScreen = gameScreen.PlayScreen;
+                SGPSounds.play();
             }
         }
-        System.out.println(CurrentScreen);
     }
 
     /**

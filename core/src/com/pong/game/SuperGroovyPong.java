@@ -28,8 +28,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //screen instance
     // private StartScreen startScreen;
 
-    private boolean isPaused = false;
-    private boolean gameOver = false;
+    private boolean isPaused;
+    private boolean gameOver;
 
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
@@ -50,9 +50,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
         //setScreen(startScreen);
 
         CurrentScreen = gameScreen.PlayScreen;
+        gameOver = false;
+        isPaused = false;
 
         // Initialize Objects once we go past Start Screen        
-        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerAI);
+        paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
         paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
 
@@ -76,7 +78,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Update logic
         if (CurrentScreen == gameScreen.PlayScreen) {
             paddle1.update();
-            paddle1.trackBall(ball);
             paddle2.update();
             paddle2.trackBall(ball);
             ball.update(paddle1, paddle2, screenWidth, screenHeight);
@@ -147,17 +148,17 @@ public class SuperGroovyPong extends ApplicationAdapter {
     }
 
     private void pauseCheck() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            isPaused = !isPaused;
-        }
+        if (!gameOver) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                isPaused = !isPaused;
+            }
 
-        if (isPaused) {
-            // Handle any pause-related logic (e.g., stop animations or background music)
-            CurrentScreen = gameScreen.PauseScreen;
-            SGPSounds.stop();
-        } else {
-            // Handle resume logic (e.g., restart animations or resume background music)
-            if (!gameOver) {
+            if (isPaused) {
+                // Handle any pause-related logic (e.g., stop animations or background music)
+                CurrentScreen = gameScreen.PauseScreen;
+                SGPSounds.stop();
+            } else {
+                // Handle resume logic (e.g., restart animations or resume background music)
                 CurrentScreen = gameScreen.PlayScreen;
                 SGPSounds.play();
             }

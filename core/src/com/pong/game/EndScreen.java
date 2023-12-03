@@ -63,6 +63,7 @@ public class EndScreen implements Screen {
     @Override
     public void pause() {
         // Could handle if the game is paused
+        font.draw(batch, "Paused", 100, 300);
     }
 
     @Override

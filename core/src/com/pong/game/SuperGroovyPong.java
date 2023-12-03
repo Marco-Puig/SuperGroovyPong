@@ -1,6 +1,7 @@
 package com.pong.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -27,9 +28,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //screen instance
     // private StartScreen startScreen;
 
+    boolean isPaused = false;
+
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
-    gameScreen CurrentScreen;
+    public gameScreen CurrentScreen;
 
     /**
      * Method to create the new game
@@ -44,6 +47,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
         libRequired();
         // startScreen = new StartScreen(this);
         //setScreen(startScreen);
+
+        CurrentScreen = gameScreen.PlayScreen;
 
         // Initialize Objects once we go past Start Screen        
         paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
@@ -66,12 +71,14 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Update logic
-        paddle1.update();
-        paddle2.update();
-        paddle2.trackBall(ball);
-        ball.update(paddle1, paddle2, screenWidth, screenHeight);
         checkGameState();
+        // Update logic
+        if (CurrentScreen == gameScreen.PlayScreen) {
+            paddle1.update();
+            paddle2.update();
+            paddle2.trackBall(ball);
+            ball.update(paddle1, paddle2, screenWidth, screenHeight);
+        }
 
         // Draw objects
         batch.begin();
@@ -111,11 +118,44 @@ public class SuperGroovyPong extends ApplicationAdapter {
     }
 
     public void checkGameState() {
-        if (CurrentScreen != gameScreen.EndScreen) {
-            
+
+        gameOverCheck();
+        pauseCheck();
+
+        switch (CurrentScreen) {
+            case PauseScreen:   
+                
+                break;
+            case EndScreen:
+                EndScreen endScreen = new EndScreen(this, ball.getScorePlayerLeft());
+                endScreen.render(60);
+                break;
+            default:
+                break;
+        }
+       
+    }
+
+    private void gameOverCheck() {
+        if (ball.getScorePlayerLeft() < ball.getScorePlayerRight()-3) {
+            CurrentScreen = gameScreen.EndScreen;
         }
     }
 
+    private void pauseCheck() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            isPaused = !isPaused;
+            System.out.println(isPaused);
+        }
+
+        if (isPaused) {
+            // Handle any pause-related logic (e.g., stop animations or background music)
+            CurrentScreen = gameScreen.PauseScreen;
+        } else {
+            // Handle resume logic (e.g., restart animations or resume background music)
+            CurrentScreen = gameScreen.PlayScreen;
+        } 
+    }
 
     /**
      * Needed requirements for the game

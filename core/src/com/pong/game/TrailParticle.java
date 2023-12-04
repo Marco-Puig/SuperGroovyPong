@@ -1,6 +1,9 @@
 package com.pong.game;
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ * Class to track a particle through the game
+ * @author Marco Puig
+ */
 public class TrailParticle {
     public Vector2 position;
     public Vector2 velocity;

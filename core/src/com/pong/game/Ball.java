@@ -156,6 +156,7 @@ public class Ball {
 
     /**
      * Method to create the ball
+     * @author Marco Puig
      * @param shapeRenderer the shapeRenderer option to make the ball
      */
     public void render(ShapeRenderer shapeRenderer) {
@@ -214,6 +215,7 @@ public class Ball {
 
     /**
      * Method to reset the speed of the ball
+     * @author Marco Puig
      */
     public void resetSpeed()
     {
@@ -225,6 +227,7 @@ public class Ball {
     
     /**
      * Method to reset the position of the ball
+     * @author Marco Puig
      */
     private void resetBall()
     {

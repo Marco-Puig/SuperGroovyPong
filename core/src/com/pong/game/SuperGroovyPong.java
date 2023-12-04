@@ -35,8 +35,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     public gameScreen CurrentScreen;
 
-    private StartScreen startScreen;
-
     /**
      * Method to create the new game
      */
@@ -48,7 +46,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         
         CurrentScreen = gameScreen.StartScreen;
         startScreen = new StartScreen(this);
-        
+
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
         gameOver = false;

@@ -7,10 +7,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
-//import com.badlogic.gdx.Screen;
-//import com.badlogic.gdx.scenes.scene2d.ui.List;
-//import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
 
 /**
  * Main Super Groovy Pong Class, using the Application Adapter

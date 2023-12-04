@@ -44,6 +44,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Call needed dependencies
         libRequired();
 
+
+        
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
         gameOver = false;
@@ -123,7 +125,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
                 break;
             case EndScreen:
                 EndScreen endScreen = new EndScreen(this, ball.getScorePlayerLeft());
-                endScreen.render(60);
+                endScreen.render(Gdx.graphics.getDeltaTime());
                 break;
             default:
                 break;

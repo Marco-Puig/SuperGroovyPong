@@ -51,8 +51,8 @@ public class EndScreen implements Screen {
         if (Gdx.input.isTouched()) {
             // Reset the game and switch back to the main screen
             game.dispose();
-            dispose();
             game.create();
+            dispose();
         }
     }
 
@@ -64,7 +64,7 @@ public class EndScreen implements Screen {
     @Override
     public void pause() {
         // Could handle if the game is paused
-        font.draw(batch, "Paused", 100, 300);
+        //font.draw(batch, "Paused", 100, 300);
     }
 
     @Override

@@ -37,14 +37,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     private StartScreen startScreen;
 
-    @Override
-    public void create() {
-        libRequired();
-
-        CurrentScreen = gameScreen.StartScreen;
-        startScreen = new StartScreen(this);
-    }
-
     /**
      * Method to create the new game
      */

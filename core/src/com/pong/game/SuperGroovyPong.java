@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
 //import com.badlogic.gdx.Screen;
 //import com.badlogic.gdx.scenes.scene2d.ui.List;
-//import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
 /**
@@ -34,6 +34,16 @@ public class SuperGroovyPong extends ApplicationAdapter {
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
     public gameScreen CurrentScreen;
+
+    private StartScreen startScreen;
+
+    @Override
+    public void create() {
+        libRequired();
+
+        CurrentScreen = gameScreen.StartScreen;
+        startScreen = new StartScreen(this);
+    }
 
     /**
      * Method to create the new game

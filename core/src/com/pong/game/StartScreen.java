@@ -46,7 +46,7 @@ public class StartScreen extends ScreenAdapter {
 
     private void startGame() {
         // Switch to the game screen
-        game.setScreen(new SuperGroovyGameScreen(game));
+        game.setScreen(new PlayScreen(game));
     }
 
     @Override

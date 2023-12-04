@@ -43,8 +43,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
     public void create () {
         // Call needed dependencies
         libRequired();
-
-
         
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
@@ -72,8 +70,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        checkGameState();
+
+
         // Update logic
+        checkGameState();
         if (CurrentScreen == gameScreen.PlayScreen) {
             paddle1.update();
             paddle2.update();
@@ -121,7 +121,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
         switch (CurrentScreen) {
             case PauseScreen:   
-                
+                PauseScreen pauseScreen = new PauseScreen(this);
+                pauseScreen.render(Gdx.graphics.getDeltaTime());
                 break;
             case EndScreen:
                 EndScreen endScreen = new EndScreen(this, ball.getScorePlayerLeft());
@@ -129,8 +130,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
                 break;
             default:
                 break;
-        }
-       
+        }   
     }
 
     /**

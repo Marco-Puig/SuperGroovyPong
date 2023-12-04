@@ -71,10 +71,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-
         // Update logic
         checkGameState();
-        if (CurrentScreen == gameScreen.PlayScreen) {
+        if (CurrentScreen == gameScreen.PlayScreen) 
+        {
             paddle1.update();
             paddle2.update();
             paddle2.trackBall(ball);
@@ -84,13 +84,17 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Draw objects
         batch.begin();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        paddle1.render(shapeRenderer);
-        paddle2.render(shapeRenderer);
-        ball.render(shapeRenderer);
 
-        // Draw Score
-        font.draw(batch, Integer.toString(ball.getScorePlayerLeft()), screenWidth / 2 - 50, 50);
-        font.draw(batch, Integer.toString(ball.getScorePlayerRight()), screenWidth / 2 + 25, 50);
+        if (CurrentScreen == gameScreen.PlayScreen)
+        {
+            paddle1.render(shapeRenderer);
+            paddle2.render(shapeRenderer);
+            ball.render(shapeRenderer);
+
+            // Draw Score
+            font.draw(batch, Integer.toString(ball.getScorePlayerLeft()), screenWidth / 2 - 50, 50);
+            font.draw(batch, Integer.toString(ball.getScorePlayerRight()), screenWidth / 2 + 25, 50);
+        }
 
         // Needed calls for render
         batch.end();
@@ -138,7 +142,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
      * @author Antonio Croissy
      */
     private void gameOverCheck() {
-        if (ball.getScorePlayerLeft() >= 3 || ball.getScorePlayerRight() >= 3) {
+        if (gameOverOnThreshold()) {
             gameOver = true;
             CurrentScreen = gameScreen.EndScreen;
         }
@@ -164,6 +168,26 @@ public class SuperGroovyPong extends ApplicationAdapter {
                 SGPSounds.play();
             }
         }
+    }
+    
+    public void showEndScreen(int finalScore) {
+        // End screen should just display then have a button to redirect to menu screen
+        //setScreen(new EndScreen(this, finalScore));
+    }
+
+    // Check to if a player has scored more than 10 points, if so, end the game
+    public boolean gameOverOnThreshold()
+    {
+        if (ball.getScorePlayerLeft() >= 10)
+        {
+            return true;
+        }
+        else if (ball.getScorePlayerRight() >= 10)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /**

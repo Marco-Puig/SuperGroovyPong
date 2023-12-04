@@ -1,7 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+/**
+ * Test method for the super groovy pong
+ * @author Marco Puig
+ */
 public class SuperGroovyPongTest {
 
     private SuperGroovyPong game;

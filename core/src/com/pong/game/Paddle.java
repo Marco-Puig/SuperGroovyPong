@@ -145,6 +145,7 @@ public class Paddle {
 
     /**
      * Method to track the ball
+     * @author Marco Puig
      * @param ball the moving ball
      */
     public void trackBall(Ball ball) {

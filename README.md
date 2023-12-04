@@ -7,10 +7,10 @@ A fast-paced Pong game implemented in Java using the LibGDX library. The game of
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
 - [Controls](#controls)
 - [Contributing](#contributing)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 ## Installation
 
@@ -31,9 +31,9 @@ cd SuperGroovyPong
 
 ## Controls
 
-- Player 1: Use the W and S keys to move the paddle up and down, respectively.
-- Player 2: Use the Up and Down arrow keys to move the paddle up and down, respectively.
-- AI Player: Automatically moves up and down without user control.
+- Player 1: Use the W and S keys to move the paddle up and down, and A and D to move left to right respectively.
+- Player 2: Use the Up and Down arrow keys to move the paddle up and down, and left and right respectively.
+- AI Player: Automatically moves up and down without user control, makes for a great opponent.
 
 ## Contributing
 

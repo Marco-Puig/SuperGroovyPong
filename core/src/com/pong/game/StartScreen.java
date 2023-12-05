@@ -35,11 +35,13 @@ public class StartScreen extends ScreenAdapter {
 
        // skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
         stage = new Stage(new ScreenViewport());
+
+        show();
     }
 
     @Override
     public void show() {
-        TextButton startButton = new TextButton("Start Game", skin);
+        /*TextButton startButton = new TextButton("Start Game", skin);
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -50,7 +52,7 @@ public class StartScreen extends ScreenAdapter {
         Table table = new Table();
         table.setFillParent(true);
         table.add(startButton).pad(20);
-        stage.addActor(table);
+        stage.addActor(table);*/
     }
 
     private void startGame() {
@@ -76,7 +78,9 @@ public class StartScreen extends ScreenAdapter {
 
         if (Gdx.input.isTouched()) {
             startGame();
+            dispose();
         }
+        return;
     }
 
     @Override

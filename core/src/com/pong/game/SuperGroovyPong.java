@@ -50,10 +50,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         startScreen = new StartScreen(this);
 
         // Set the initial screen to the start screen
-        CurrentScreen = gameScreen.StartScreen;
+        //CurrentScreen = gameScreen.StartScreen;
 
         //Set flags related to game states and screens
-        CurrentScreen = gameScreen.PlayScreen;
+        CurrentScreen = gameScreen.StartScreen;
         gameOver = false;
         isPaused = false;
 
@@ -78,6 +78,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        if (CurrentScreen == gameScreen.StartScreen) {
+            startScreen.render(Gdx.graphics.getDeltaTime());
+        }
 
         // Update logic
         checkGameState();

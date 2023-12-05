@@ -35,6 +35,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     public gameScreen CurrentScreen;
 
+    private StartScreen startScreen; 
+
     /**
      * Method to create the new game
      */
@@ -44,6 +46,12 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Call needed dependencies
         libRequired();
         
+        // Initialize the StartScreen instance
+        startScreen = new StartScreen(this);
+
+        // Set the initial screen to the start screen
+        setScreen(gameScreen.StartScreen);
+
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
         gameOver = false;
@@ -124,6 +132,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
         pauseCheck();
 
         switch (CurrentScreen) {
+            case StartScreen:
+                startScreen.render(Gdx.graphics.getDeltaTime());
+                break;
             case PauseScreen:   
                 PauseScreen pauseScreen = new PauseScreen(this);
                 pauseScreen.render(Gdx.graphics.getDeltaTime());

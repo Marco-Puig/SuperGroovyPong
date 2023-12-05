@@ -33,7 +33,7 @@ public class StartScreen extends ScreenAdapter {
         font = new BitmapFont();
         font.getData().setScale(2.75f);
 
-        skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
+       // skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
         stage = new Stage(new ScreenViewport());
     }
 

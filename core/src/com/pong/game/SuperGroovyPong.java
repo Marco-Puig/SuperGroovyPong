@@ -23,6 +23,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private Paddle paddle1, paddle2;
     private Ball ball;
     private BitmapFont font;
+    Skin skin;
 
     //music instance
     private SGPSounds SGPSounds;
@@ -30,6 +31,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //Flags
     private boolean isPaused;
     private boolean gameOver;
+    private boolean singlePlayer;
 
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
@@ -48,9 +50,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
         
         // Initialize the StartScreen instance
         startScreen = new StartScreen(this);
-
-        // Set the initial screen to the start screen
-        //CurrentScreen = gameScreen.StartScreen;
 
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.StartScreen;
@@ -223,6 +222,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
         //skin initialization
-        //skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
+        skin = new Skin(Gdx.files.internal("assets\\glassy-ui.json"));
     }
 }

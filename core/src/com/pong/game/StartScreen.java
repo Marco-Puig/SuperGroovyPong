@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.pong.game.SuperGroovyPong.gameScreen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 
 public class StartScreen extends ScreenAdapter {
@@ -21,8 +20,9 @@ public class StartScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private BitmapFont font;
-    private Skin skin;
     private Stage stage;
+    Button numOfPlayers;
+    //Skin buttonSkin;
     public Boolean start = false;
 
     public StartScreen(final SuperGroovyPong game) {
@@ -34,26 +34,25 @@ public class StartScreen extends ScreenAdapter {
         font = new BitmapFont();
         font.getData().setScale(2.75f);
 
-       // skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
         stage = new Stage(new ScreenViewport());
 
-        show();
-    }
-
-    @Override
-    public void show() {
-        /*TextButton startButton = new TextButton("Start Game", skin);
-        startButton.addListener(new ClickListener() {
+        //buttonSkin = new Skin();
+        numOfPlayers = new TextButton("SinglePlayer", game.skin);
+        numOfPlayers.setSize(40, 40);
+        numOfPlayers.setPosition(400, 200);
+        numOfPlayers.addListener(new InputListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y) {
-                startGame();
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
             }
         });
+        stage.addActor(numOfPlayers);
 
-        Table table = new Table();
-        table.setFillParent(true);
-        table.add(startButton).pad(20);
-        stage.addActor(table);*/
     }
 
     @Override
@@ -83,7 +82,6 @@ public class StartScreen extends ScreenAdapter {
     public void dispose() {
         batch.dispose();
         font.dispose();
-        //skin.dispose();
         stage.dispose();
     }
 }

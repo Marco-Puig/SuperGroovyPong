@@ -56,28 +56,7 @@ public class EndScreen extends ScreenAdapter {
             dispose();
         }
     }
-/*
-    @Override
-    public void resize(int width, int height) {
-        // Code to handle screen resizing
-    }
 
-    @Override
-    public void pause() {
-        // Could handle if the game is paused
-        //font.draw(batch, "Paused", 100, 300);
-    }
-
-    @Override
-    public void resume() {
-        // Handle when the game is resumed
-    }
-
-    @Override
-    public void hide() {
-        // Clean up screen when it is no longer active
-    }
-*/
     @Override
     public void dispose() {
         // Dispose of resources when the screen is no longer shown

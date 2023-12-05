@@ -7,9 +7,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pong.game.Paddle.State;
+//import com.badlogic.gdx.Screen;
+//import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 
 /**
  * Main Super Groovy Pong Class, using the Application Adapter
+ * Model: for the MVC
+ * Design Pattern: Application Adapter
  * @author Marco Puig
  */
 public class SuperGroovyPong extends ApplicationAdapter {
@@ -19,6 +25,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private Paddle paddle1, paddle2;
     private Ball ball;
     private BitmapFont font;
+    Skin skin;
 
     //music instance
     private SGPSounds SGPSounds;
@@ -31,8 +38,12 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     public gameScreen CurrentScreen;
 
+    private StartScreen startScreen; 
+
     /**
      * Method to create the new game
+     * Create method of Application Adapter
+     * Initializes code, creating an instance of the game with resources
      */
     // On Start
     @Override
@@ -40,14 +51,16 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Call needed dependencies
         libRequired();
         
+        // Initialize the StartScreen instance
+        startScreen = new StartScreen(this);
+
         //Set flags related to game states and screens
-        CurrentScreen = gameScreen.PlayScreen;
+        CurrentScreen = gameScreen.StartScreen;
         gameOver = false;
         isPaused = false;
 
         // Initialize Objects once we go past Start Screen        
         paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
-        paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
 
         //load and play the audio in the background
@@ -57,6 +70,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Method to render the screen
+     * Render method of Application Adapter
+     * Renders the code logic, updating the gaming world continuously
      */
     // Render on every frame
     @Override
@@ -66,9 +81,23 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        if (CurrentScreen == gameScreen.StartScreen) 
+        {
+            startScreen.render(Gdx.graphics.getDeltaTime());
+            CurrentScreen = gameScreen.StartScreen;
+            if (startScreen.start) {
+                CurrentScreen = gameScreen.PlayScreen;
+                if (!startScreen.SinglePlayer()) {
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerTwo); // can also say State.playerAI
+                } else {
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
+                }
+            }
+        }
 
         // Update logic
         checkGameState();
+        
         if (CurrentScreen == gameScreen.PlayScreen) 
         {
             paddle1.update();
@@ -100,6 +129,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Method to dispose of the screen when the game is over
+     * dispose method of Application Adapter
+     * Disposes of the resources upon completion
      */
     // Dispose when completed
     @Override
@@ -120,6 +151,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
         pauseCheck();
 
         switch (CurrentScreen) {
+            case StartScreen:
+                startScreen.render(Gdx.graphics.getDeltaTime());
+                break;
             case PauseScreen:   
                 PauseScreen pauseScreen = new PauseScreen(this);
                 pauseScreen.render(Gdx.graphics.getDeltaTime());
@@ -160,7 +194,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
                 SGPSounds.stop();
             } else {
                 // Handle resume logic (e.g., restart animations or resume background music)
-                CurrentScreen = gameScreen.PlayScreen;
+                if (CurrentScreen != gameScreen.StartScreen)
+                    CurrentScreen = gameScreen.PlayScreen;
                 SGPSounds.play();
             }
         }
@@ -188,6 +223,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Needed requirements for the game
+     * libRequired method of Application Adapter
+     * Library setup method to initialize the components
      * @author Marco Puig
      */
     public void libRequired()
@@ -197,7 +234,5 @@ public class SuperGroovyPong extends ApplicationAdapter {
         font = new BitmapFont();
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
-        //skin initialization
-        //skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
     }
 }

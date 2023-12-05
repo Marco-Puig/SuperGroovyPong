@@ -83,7 +83,7 @@ public class StartScreen extends ScreenAdapter {
     public void dispose() {
         batch.dispose();
         font.dispose();
-        skin.dispose();
+        //skin.dispose();
         stage.dispose();
     }
 }

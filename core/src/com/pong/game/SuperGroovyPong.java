@@ -78,8 +78,10 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        while (CurrentScreen == gameScreen.StartScreen) {
+        if (CurrentScreen == gameScreen.StartScreen) 
+        {
             startScreen.render(Gdx.graphics.getDeltaTime());
+            CurrentScreen = gameScreen.StartScreen;
             if (startScreen.start) {
                 CurrentScreen = gameScreen.PlayScreen;
             }
@@ -87,6 +89,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
         // Update logic
         checkGameState();
+        
         if (CurrentScreen == gameScreen.PlayScreen) 
         {
             paddle1.update();
@@ -181,7 +184,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
                 SGPSounds.stop();
             } else {
                 // Handle resume logic (e.g., restart animations or resume background music)
-                CurrentScreen = gameScreen.PlayScreen;
+                if (CurrentScreen != gameScreen.StartScreen)
+                    CurrentScreen = gameScreen.PlayScreen;
                 SGPSounds.play();
             }
         }

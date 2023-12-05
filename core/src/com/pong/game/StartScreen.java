@@ -7,30 +7,36 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class StartScreen extends ScreenAdapter {
-
     private final SuperGroovyPong game;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private BitmapFont font;
+    private Skin skin;
+    private Stage stage;
 
     public StartScreen(final SuperGroovyPong game) {
         this.game = game;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 400); // Adjust dimensions
+        camera.setToOrtho(false, 800, 400);
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.getData().setScale(2.75f);
+
+        skin = new Skin(Gdx.files.internal("path/to/your/skin.json"));
+        stage = new Stage(new ScreenViewport());
     }
 
     @Override
     public void show() {
-        TextButton startButton = new TextButton("Start Game", game.skin);
+        TextButton startButton = new TextButton("Start Game", skin);
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -41,7 +47,7 @@ public class StartScreen extends ScreenAdapter {
         Table table = new Table();
         table.setFillParent(true);
         table.add(startButton).pad(20);
-        game.stage.addActor(table);
+        stage.addActor(table);
     }
 
     private void startGame() {
@@ -62,8 +68,8 @@ public class StartScreen extends ScreenAdapter {
         font.draw(batch, "Tap the screen to start", 100, 250);
         batch.end();
 
-        game.stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        game.stage.draw();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        stage.draw();
 
         if (Gdx.input.isTouched()) {
             startGame();
@@ -74,5 +80,7 @@ public class StartScreen extends ScreenAdapter {
     public void dispose() {
         batch.dispose();
         font.dispose();
+        skin.dispose();
+        stage.dispose();
     }
 }

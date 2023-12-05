@@ -28,6 +28,8 @@ cd SuperGroovyPong
 
 3. Install the required Java Development Kit if you are using VSCode
 4. To make sure your VSCode is correctly setup for Java Projects, please check the bottom left tab labeled 'Java Projects':
+
+
 ![Untitled](https://github.com/Marco-Puig/SuperGroovyPong/assets/90495366/78363bce-2d95-41ff-bb2a-df5cb8d3d5e1)
 
 5. Open the DESKTOP LAUNCHER & run the program through there. A window will popup, entitled 'Super Groovy Pong'

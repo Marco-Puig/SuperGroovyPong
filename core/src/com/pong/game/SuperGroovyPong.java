@@ -44,9 +44,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
         // Call needed dependencies
         libRequired();
         
-        CurrentScreen = gameScreen.StartScreen;
-        startScreen = new StartScreen(this);
-
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;
         gameOver = false;

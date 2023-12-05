@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.pong.game.SuperGroovyPong.gameScreen;
 
+/**
+ * Class to render the pausing of the game
+ * Design Pattern: Singleton Pattern
+ * @author Antonio Croissy
+ */
 public class PauseScreen extends ScreenAdapter {
 
     private final SuperGroovyPong game;

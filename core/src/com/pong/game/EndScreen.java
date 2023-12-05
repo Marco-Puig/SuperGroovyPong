@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Class to build an ending screen
- * @author Laura Waldron, Hana Segura
+ * @author Laura Waldron, Hana Segura, Antonio Croissy
  */
 public class EndScreen extends ScreenAdapter {
 

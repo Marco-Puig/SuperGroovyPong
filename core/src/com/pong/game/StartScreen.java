@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Class to handle the start of the game
+ * Design Pattern: Singleton Pattern
+ * @author Hana Segura, Antonio Croissy
+ */
 public class StartScreen extends ScreenAdapter {
     private final SuperGroovyPong game;
     private OrthographicCamera camera;

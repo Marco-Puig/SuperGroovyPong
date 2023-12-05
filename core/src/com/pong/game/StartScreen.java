@@ -14,6 +14,7 @@ public class StartScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     public Boolean start = false;
+    private boolean singlePlayer;
 
     public StartScreen(final SuperGroovyPong game) {
         this.game = game;
@@ -22,7 +23,7 @@ public class StartScreen extends ScreenAdapter {
         camera.setToOrtho(false, 800, 400);
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.getData().setScale(2.75f);
+        font.getData().setScale(2.15f);
     }
 
     @Override
@@ -41,12 +42,18 @@ public class StartScreen extends ScreenAdapter {
 
         // DO THE CHANGE PLAYER STATE HERE:::::::::::
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+            singlePlayer = true;
             start = true;
             dispose();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
+            singlePlayer = false;
             start = true;
             dispose();
         }
+    }
+
+    public boolean SinglePlayer() {
+        return singlePlayer;
     }
 
     @Override

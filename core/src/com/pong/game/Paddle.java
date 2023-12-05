@@ -100,8 +100,8 @@ public class Paddle {
             x -= speed;
         } 
 
-        if (x > Gdx.graphics.getWidth() / 3) {
-            x = Gdx.graphics.getWidth() / 3;
+        if (x < (2*(Gdx.graphics.getWidth() / 3))) {
+            x = 2*(Gdx.graphics.getWidth() / 3);
         }
         
         checkCollide();
@@ -182,6 +182,9 @@ public class Paddle {
         // X-axis boundary checking (limit movement to one-third of the screen)
         if (x < 0) {
             x = 0;
+        }
+        if (x > Gdx.graphics.getWidth()) {
+            x = Gdx.graphics.getWidth() - width;
         }
     } 
 

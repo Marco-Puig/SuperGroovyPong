@@ -33,7 +33,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
     //Flags
     private boolean isPaused;
     private boolean gameOver;
-    private boolean singlePlayer;
 
     public enum gameScreen {StartScreen, PlayScreen, PauseScreen, EndScreen}
 
@@ -62,7 +61,6 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
         // Initialize Objects once we go past Start Screen        
         paddle1 = new Paddle(20, screenHeight / 2 - 40, 20, 80, State.playerOne);
-        paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
         ball = new Ball(screenWidth / 2, screenHeight / 2, 20, 20);
 
         //load and play the audio in the background
@@ -89,6 +87,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
             CurrentScreen = gameScreen.StartScreen;
             if (startScreen.start) {
                 CurrentScreen = gameScreen.PlayScreen;
+                if (!startScreen.SinglePlayer()) {
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerTwo); // can also say State.playerAI
+                } else {
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
+                }
             }
         }
 

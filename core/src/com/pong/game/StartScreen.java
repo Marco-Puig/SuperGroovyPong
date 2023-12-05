@@ -23,6 +23,7 @@ public class StartScreen extends ScreenAdapter {
     private BitmapFont font;
     private Skin skin;
     private Stage stage;
+    public Boolean start = false;
 
     public StartScreen(final SuperGroovyPong game) {
         this.game = game;
@@ -55,11 +56,6 @@ public class StartScreen extends ScreenAdapter {
         stage.addActor(table);*/
     }
 
-    private void startGame() {
-        // Switch to the game screen
-        game.CurrentScreen = gameScreen.PlayScreen;
-    }
-
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -77,7 +73,7 @@ public class StartScreen extends ScreenAdapter {
         stage.draw();
 
         if (Gdx.input.isTouched()) {
-            startGame();
+            start = true;
             dispose();
         }
         return;

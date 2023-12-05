@@ -78,8 +78,11 @@ public class SuperGroovyPong extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (CurrentScreen == gameScreen.StartScreen) {
+        while (CurrentScreen == gameScreen.StartScreen) {
             startScreen.render(Gdx.graphics.getDeltaTime());
+            if (startScreen.start) {
+                CurrentScreen = gameScreen.PlayScreen;
+            }
         }
 
         // Update logic

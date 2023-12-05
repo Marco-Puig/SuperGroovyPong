@@ -5,10 +5,11 @@ import com.badlogic.gdx.audio.Music;
 
 /**
  * Class to handle the sounds of the game
+ * Design Pattern: Singleton Pattern
  * @author Laura Waldron
  */
 public class SGPSounds {
-    private Music music; //create a music instance
+    private Music music; //create a private music instance
 
     /**
      * Method to find the music file path
@@ -20,6 +21,7 @@ public class SGPSounds {
 
     /**
      * Method to play the music
+     * Static method
      */
     public void play() {
         if (music != null) {

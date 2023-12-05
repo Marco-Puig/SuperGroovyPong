@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 /**
  * Class to run the desktop launcher for the game
+ * View: for the MVC
  * @author Marco Puig
  */
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument

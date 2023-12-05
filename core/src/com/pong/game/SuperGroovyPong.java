@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
  * Main Super Groovy Pong Class, using the Application Adapter
+ * Model: for the MVC
+ * Design Pattern: Application Adapter
  * @author Marco Puig
  */
 public class SuperGroovyPong extends ApplicationAdapter {
@@ -41,6 +43,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Method to create the new game
+     * Create method of Application Adapter
+     * Initializes code, creating an instance of the game with resources
      */
     // On Start
     @Override
@@ -68,6 +72,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Method to render the screen
+     * Render method of Application Adapter
+     * Renders the code logic, updating the gaming world continuously
      */
     // Render on every frame
     @Override
@@ -120,6 +126,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Method to dispose of the screen when the game is over
+     * dispose method of Application Adapter
+     * Disposes of the resources upon completion
      */
     // Dispose when completed
     @Override
@@ -212,6 +220,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
 
     /**
      * Needed requirements for the game
+     * libRequired method of Application Adapter
+     * Library setup method to initialize the components
      * @author Marco Puig
      */
     public void libRequired()

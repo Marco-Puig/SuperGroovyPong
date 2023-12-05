@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Class to handle the paddle
+ * Design Pattern: Observer Pattern
  * @author Marco Puig
  */
 public class Paddle {
@@ -18,6 +19,7 @@ public class Paddle {
 
     /**
      * Method to define a paddle
+     * Subject of Observer Pattern
      * @param x the x coordinate
      * @param y the y coordinate
      * @param width the width of the paddle
@@ -35,6 +37,8 @@ public class Paddle {
 
     /**
      * Method to update the state
+     * Design Pattern: State Pattern
+     * State can be two players or an ai player
      */
     public void update() {
         // Movement code based on state
@@ -76,6 +80,8 @@ public class Paddle {
 
     /**
      * Method to move the input keys (WASD)
+     * Observer for Observer Pattern
+     * ConcreteState1 for State Pattern
      * @author Antoinio Croissy
      */
     public void moveInputKeys()
@@ -103,6 +109,8 @@ public class Paddle {
     
     /**
      * Method to move the WASD keys
+     * ConcreteObserver for Observer Pattern
+     * ConcreteState2 for State Pattern
      * @author Marco Puig
      */
     public void moveInputWASD()
@@ -130,6 +138,8 @@ public class Paddle {
 
     /**
      * Method to move the AI Player
+     * attach() method for Observer pattern
+     * ConcreteState3 for State pattern
      * @author Antoinio Croissy
      */
     public void moveAI() {
@@ -155,6 +165,7 @@ public class Paddle {
 
     /**
      * Method to check for a collision
+     * notify() for Observer pattern
      * @author Marco Puig
      */
     public void checkCollide() {
@@ -176,6 +187,7 @@ public class Paddle {
 
     /**
      * State declaration (3 states)
+     * States for State Pattern
      * @author Marco Puig
      */
     public enum State {

@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  * Class handling the Ball's definition
+ * Design Pattern: Decorator Pattern
  * @author Marco Puig
  */
 public class Ball {
@@ -156,6 +157,7 @@ public class Ball {
 
     /**
      * Method to create the ball
+     * render() method of decorator pattern
      * @author Marco Puig
      * @param shapeRenderer the shapeRenderer option to make the ball
      */
@@ -163,11 +165,14 @@ public class Ball {
         // Render the ball
 
         // Calculate color based on which player has last hit the ball
+        //Decorator (color) of Decorator Pattern
         float red = -velocityX;
         float blue = velocityX;
         float green = 0.0f;
         
+        //shapeRenderer: Component of Decorator Pattern
         shapeRenderer.setColor(red, green, blue, 1);
+        //circle: ConcreteComponent of Decorator Pattern
         shapeRenderer.circle(x, y, width / 2);
     }
     

@@ -6,14 +6,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 public class StartScreen extends ScreenAdapter {
     private final SuperGroovyPong game;
@@ -21,8 +18,7 @@ public class StartScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     private Stage stage;
-    Button numOfPlayers;
-    //Skin buttonSkin;
+    private TextButton numOfPlayers;
     public Boolean start = false;
 
     public StartScreen(final SuperGroovyPong game) {
@@ -34,25 +30,23 @@ public class StartScreen extends ScreenAdapter {
         font = new BitmapFont();
         font.getData().setScale(2.75f);
 
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage();
 
-        //buttonSkin = new Skin();
-        numOfPlayers = new TextButton("SinglePlayer", game.skin);
-        numOfPlayers.setSize(40, 40);
-        numOfPlayers.setPosition(400, 200);
+        TextButtonStyle textButtonStyle = new TextButtonStyle();
+        textButtonStyle.font = font;
+        numOfPlayers = new TextButton("SinglePlayer", textButtonStyle);
+        numOfPlayers.setSize(200, 80);
+        numOfPlayers.setPosition(300, 150);
         numOfPlayers.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                start = true;
+                dispose();
                 return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
             }
         });
         stage.addActor(numOfPlayers);
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -65,17 +59,11 @@ public class StartScreen extends ScreenAdapter {
 
         batch.begin();
         font.draw(batch, "Welcome to Super Groovy Pong", 100, 300);
-        font.draw(batch, "Tap the screen to start", 100, 250);
+        font.draw(batch, "Tap the button to start", 100, 250);
         batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
-        if (Gdx.input.isTouched()) {
-            start = true;
-            dispose();
-        }
-        return;
     }
 
     @Override

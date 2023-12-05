@@ -221,7 +221,5 @@ public class SuperGroovyPong extends ApplicationAdapter {
         font = new BitmapFont();
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
-        //skin initialization
-        skin = new Skin(Gdx.files.internal("assets\\glassy-ui.json"));
     }
 }

@@ -50,7 +50,7 @@ public class SuperGroovyPong extends ApplicationAdapter {
         startScreen = new StartScreen(this);
 
         // Set the initial screen to the start screen
-        setScreen(gameScreen.StartScreen);
+        CurrentScreen = gameScreen.StartScreen;
 
         //Set flags related to game states and screens
         CurrentScreen = gameScreen.PlayScreen;

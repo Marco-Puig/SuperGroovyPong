@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 
 public class StartScreen extends ScreenAdapter {
     private final SuperGroovyPong game;
@@ -52,7 +54,7 @@ public class StartScreen extends ScreenAdapter {
 
     private void startGame() {
         // Switch to the game screen
-        game.setScreen(new PlayScreen(game));
+        game.CurrentScreen = gameScreen.PlayScreen;
     }
 
     @Override

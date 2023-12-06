@@ -1,19 +1,27 @@
 package com.pong.game;
 
 /**
- * Test method for the super groovy pong
+ * This class contains test methods for the Super Groovy Pong game.
+ * It tests the updates of paddles and the ball.
+ * 
  * @author Marco Puig
  */
-
 public class SuperGroovyPongTest {
 
     private SuperGroovyPong game;
 
+    /**
+     * Sets up the test environment by initializing the SuperGroovyPong game.
+     */
     public void setUp() {
         game = new SuperGroovyPong();
         game.create(); // Initialize the game
     }
 
+    /**
+     * Tests the update method for paddle1.
+     * It moves paddle1 to a new position and checks if the position has been updated.
+     */
     public void testPaddle1Update() {
         // Move paddle1 to a new position
         game.paddle1.setPosition(50, 100);
@@ -26,6 +34,10 @@ public class SuperGroovyPongTest {
         assertEqual(100, game.paddle1.getY(), 0);
     }
 
+    /**
+     * Tests the update method for paddle2.
+     * It moves paddle2 to a new position and checks if the position has been updated.
+     */
     public void testPaddle2Update() {
         // Move paddle2 to a new position
         game.paddle2.setPosition(500, 200);
@@ -38,6 +50,10 @@ public class SuperGroovyPongTest {
         assertEqual(200, game.paddle2.getY(), 0);
     }
 
+    /**
+     * Tests the update method for the ball.
+     * It moves the ball to a new position and checks if the position has been updated.
+     */
     public void testBallUpdate() {
         // Move the ball to a new position
         game.ball.setPosition(300, 400);
@@ -49,15 +65,26 @@ public class SuperGroovyPongTest {
         assertEqual(300, game.ball.getX(), 0);
         assertEqual(400, game.ball.getY(), 0);
     }
-    
-    // Helper method to mimic JUnit's assertEquals
+
+    /**
+     * Helper method to mimic JUnit's assertEquals.
+     * 
+     * @param expected The expected value.
+     * @param actual The actual value.
+     * @param delta The acceptable difference between expected and actual values.
+     * @throws AssertionError If the values are not equal within the specified delta.
+     */
     private void assertEqual(double expected, double actual, double delta) {
         if (Math.abs(expected - actual) > delta) {
             throw new AssertionError("Expected: " + expected + ", Actual: " + actual);
         }
     }
 
-    // Run the tests
+    /**
+     * Runs the tests for the Super Groovy Pong game.
+     * 
+     * @param args Command line arguments (not used in this context).
+     */
     public static void main(String[] args) {
         SuperGroovyPongTest test = new SuperGroovyPongTest();
         test.setUp();

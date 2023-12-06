@@ -22,8 +22,8 @@ public class SuperGroovyPong extends ApplicationAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private int screenWidth, screenHeight;
-    private Paddle paddle1, paddle2;
-    private Ball ball;
+    public Paddle paddle1, paddle2;
+    public Ball ball;
     private BitmapFont font;
     Skin skin;
 

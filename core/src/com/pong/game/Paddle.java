@@ -15,7 +15,7 @@ public class Paddle {
     private static int speed = 5;
     private Rectangle boundingBox;
     public State playerState;
-    private int ballYposition, ballXposition;
+    private int ballYposition;
 
     /**
      * Method to define a paddle
@@ -160,7 +160,6 @@ public class Paddle {
      */
     public void trackBall(Ball ball) {
         ballYposition = ball.getBallY();
-        ballXposition = ball.getBallX();
     }
 
     /**
@@ -187,6 +186,35 @@ public class Paddle {
             x = Gdx.graphics.getWidth() - width;
         }
     } 
+
+    /**
+     * Set Position
+     * @author Marco Puig
+     */
+    void setPosition(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * Get X position
+     * @author Marco Puig
+     */
+    int getX()
+    {
+        return this.x;
+    }
+
+    /**
+     * Get X position
+     * @author Marco Puig
+     */
+    int getY()
+    {
+        return this.y;
+    }
+
 
     /**
      * State declaration (3 states)

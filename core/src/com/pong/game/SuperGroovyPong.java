@@ -88,9 +88,9 @@ public class SuperGroovyPong extends ApplicationAdapter {
             if (startScreen.start) {
                 CurrentScreen = gameScreen.PlayScreen;
                 if (!startScreen.SinglePlayer()) {
-                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerTwo); // can also say State.playerAI
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerTwo); 
                 } else {
-                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI); // can also say State.playerAI
+                    paddle2 = new Paddle(screenWidth - 40, screenHeight / 2 - 40, 20, 80, State.playerAI);
                 }
             }
         }
